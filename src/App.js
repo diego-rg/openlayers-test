@@ -3,7 +3,7 @@ import CustomMap from "./components/CustomMap.jsx";
 const App = () => {
   return (
     <div className="App">
-      <div className="w-[700px] h-[700px]">
+      <div className="w-[900px] h-[900px] max-w-[100vw] max-h-[100vh] p-4">
         <CustomMap />
       </div>
     </div>
