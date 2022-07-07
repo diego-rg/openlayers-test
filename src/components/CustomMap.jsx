@@ -20,11 +20,13 @@ const olMap = new Map({
   }),
 });
 
-export default function OlMap() {
+const CustomMap = () => {
   useEffect(() => {
     olMap.setTarget("map");
     return () => olMap.setTarget(undefined);
   }, []);
 
-  return <div id="map" className="w-[700px] h-[700px]"></div>;
-}
+  return <div id="map" className="w-full h-full"></div>;
+};
+
+export default CustomMap;
