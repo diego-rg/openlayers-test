@@ -1,23 +1,30 @@
+import React, { useEffect } from "react";
+
 import Map from "ol/Map";
 import View from "ol/View";
 import OSM from "ol/source/OSM";
 import TileLayer from "ol/layer/Tile";
+import "ol/ol.css";
+import { fromLonLat } from "ol/proj";
 
-new Map({
-  layers: [new TileLayer({ source: new OSM() })],
+const olMap = new Map({
+  target: undefined,
+  layers: [
+    new TileLayer({
+      source: new OSM(),
+    }),
+  ],
   view: new View({
-    center: [0, 0],
-    zoom: 2,
+    center: fromLonLat([-9.09254535569367, 42.74839118573006]),
+    zoom: 13,
   }),
-  target: "map",
 });
 
-const CustomMap = () => {
-  return (
-    <div>
-      <div id="map" className="map"></div>
-    </div>
-  );
-};
+export default function OlMap() {
+  useEffect(() => {
+    olMap.setTarget("map");
+    return () => olMap.setTarget(undefined);
+  }, []);
 
-export default CustomMap;
+  return <div id="map" className="w-[700px] h-[700px]"></div>;
+}
